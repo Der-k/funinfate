@@ -108,14 +108,7 @@ export default function Footer() {
           {/* NAV LINKS — Caveat, larger to match system scale */}
           <div className="flex flex-wrap items-center gap-x-7 gap-y-4 border-t border-white/10 pt-10">
             {[
-              "Things To Do",
-              "Events",
-              "Plan Your Visit",
-              "Trip Ideas",
-              "Hotels",
-              "Restaurants",
-              "Nightlife",
-              "Press & Media",
+              "Explore?","Discover", "Eat & Drink", "Events", "Accomodation & Stay", "News"
             ].map((item, index) => (
               <div key={index} className="flex items-center gap-7">
                 <Link
