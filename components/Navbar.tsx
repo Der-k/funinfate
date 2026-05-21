@@ -55,7 +55,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="group flex items-center gap-2.5 select-none">
             {/* Logo image */}
-            <motion.div
+           <motion.div
   whileHover={{ scale: 1.07 }}
   transition={{ type: "spring", stiffness: 400, damping: 20 }}
   className="
@@ -69,29 +69,22 @@ export default function Navbar() {
     px-3
     py-2
 
-    bg-white/[0.03]
-    backdrop-blur-md
-
-    border border-white/10
-
-    shadow-[0_8px_30px_rgba(0,0,0,0.18)]
+    bg-[#F5DEB3]
 
     transition-all
     duration-500
 
-    group-hover:bg-white/[0.05]
-    group-hover:border-[#20B2AA]/30
     group-hover:[filter:drop-shadow(0_0_12px_rgba(32,178,170,0.35))]
   "
 >
-              <img
-  src={LOGO_SRC}
-  alt="Fate logo"
-  width={72}
-  height={72}
-  className="h-[72px] md:h-[86px] w-auto object-contain"
-/>
-            </motion.div>
+  <img
+    src={LOGO_SRC}
+    alt="Fate logo"
+    width={72}
+    height={72}
+    className="h-[72px] md:h-[86px] w-auto object-contain"
+  />
+</motion.div>
 
             {/* Wordmark */}
             <div className="leading-none">
