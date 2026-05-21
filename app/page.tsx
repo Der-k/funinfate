@@ -1,5 +1,4 @@
-import { client } from "@/lib/sanity/client";
-import { homepageQuery } from "@/lib/sanity/queries";
+
 
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
@@ -15,7 +14,7 @@ import Restarauntssection from "@/components/Restaraunts_section";
 import Fateventsection from "@/components/Fateeventssection ";
 
 export default async function HomePage() {
-  const data = await client.fetch(homepageQuery);
+  
 
   return (
     <main>
@@ -29,7 +28,7 @@ export default async function HomePage() {
      <Fateventsection />
     <AccommodationSection />
       <FateNewsSection />
-      <DiscoverSection data={data?.discoverSection} />
+   
 
       <Footer />
     </main>
