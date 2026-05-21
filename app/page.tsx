@@ -12,7 +12,7 @@ import DiscoverHighlightsSection from "@/components/DiscoverHighlightsSection";
 import AccommodationSection from "@/components/AccommodationSection";
 import FateNewsSection from "@/components/FateNewsSection";
 import Restarauntssection from "@/components/Restaraunts_section";
-
+import Fateventsection from "@/components/Fateeventssection ";
 
 export default async function HomePage() {
   const data = await client.fetch(homepageQuery);
@@ -26,6 +26,7 @@ export default async function HomePage() {
        <DiscoverHighlightsSection />
     <Restarauntssection/>
      <ShowcaseVideoSection />
+     <Fateventsection />
     <AccommodationSection />
       <FateNewsSection />
       <DiscoverSection data={data?.discoverSection} />

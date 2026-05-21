@@ -9,32 +9,7 @@ const caveat = Caveat({
   weight: ["400", "600", "700"],
 });
 
-/* ────────────────────────────────────────────────────────────────────────── */
-/* Sketch Elements */
-/* ────────────────────────────────────────────────────────────────────────── */
 
-function SketchEyebrow() {
-  return (
-    <svg
-      viewBox="0 0 52 8"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-12 h-2 shrink-0"
-    >
-      <motion.path
-        d="M2 5 C 10 3, 22 6, 34 4 C 42 3, 48 5, 50 4"
-        stroke="#20B2AA"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        fill="none"
-        initial={{ pathLength: 0, opacity: 0 }}
-        whileInView={{ pathLength: 1, opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-      />
-    </svg>
-  );
-}
 
 function SketchWordUnderline({
   color = "#20B2AA",
@@ -92,24 +67,7 @@ function SketchArrow({
   );
 }
 
-function SketchStatDivider() {
-  return (
-    <svg
-      viewBox="0 0 6 60"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="hidden md:block w-[5px] h-14 self-center mx-auto"
-      preserveAspectRatio="none"
-    >
-      <path
-        d="M3 2 C 2 14, 4 28, 3 42 C 2 50, 3 56, 3 58"
-        stroke="rgba(245,222,179,0.15)"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
+
 
 /* ────────────────────────────────────────────────────────────────────────── */
 /* Stat Item */
@@ -158,12 +116,7 @@ function StatItem({
   );
 }
 
-const stats = [
-  { number: "150+", label: "Restaurants & Cafés" },
-  { number: "80+", label: "Annual Events" },
-  { number: "40+", label: "Family Attractions" },
-  { number: "24/7", label: "City Experiences" },
-];
+
 
 /* ────────────────────────────────────────────────────────────────────────── */
 /* Main Section */
@@ -172,7 +125,7 @@ const stats = [
 export default function ShowcaseVideoSection() {
   return (
     <section
-      className={`relative h-[92vh] overflow-hidden ${caveat.className}`}
+      className={`relative min-h-[60vh] py-20 overflow-hidden ${caveat.className}`}
     >
 
       {/* ───────────────── Video Background ───────────────── */}
@@ -251,7 +204,7 @@ export default function ShowcaseVideoSection() {
 
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-3 mb-7 relative">
-            <SketchEyebrow />
+        
 
             <p
               className="uppercase font-semibold tracking-[0.3em]"
@@ -260,149 +213,47 @@ export default function ShowcaseVideoSection() {
                 fontSize: "var(--sketch-xs)",
               }}
             >
-              Experience Fate
+            Fate Events
             </p>
           </div>
 
           {/* Heading */}
-          <h2
-            className="text-white font-bold leading-[1.0] mb-7 relative"
-            style={{
-              fontSize: "clamp(2.8rem, 6vw, 4.8rem)",
-            }}
-          >
-            Discover the{" "}
-            <span className="relative inline-block">
-              Energy,
-              <SketchWordUnderline color="#20B2AA" />
-            </span>
+         <h2
+  className="text-white font-bold leading-[1.0] mb-7 relative"
+  style={{
+    fontSize: "clamp(2.8rem, 6vw, 4.8rem)",
+  }}
+>
+  Experience the{" "}
+  <span className="relative inline-block">
+    Biggest Events
+    <SketchWordUnderline color="#20B2AA" />
+  </span>
 
-            <br />
+  <br />
 
-            Culture &amp; Flavor
-            <br />
-            of Fate
-          </h2>
+  Happening Across
+  <br />
+  Fate
+</h2>
 
           {/* Description */}
-          <p
-            className="leading-relaxed max-w-2xl mb-10"
-            style={{
-              color: "rgba(255,255,255,0.74)",
-              fontSize: "clamp(1rem, 1.8vw, 1.2rem)",
-            }}
-          >
-            Explore local restaurants, live events, family attractions,
-            shopping districts, nightlife, and unforgettable experiences
-            across the city.
-          </p>
+       <p
+  className="leading-relaxed max-w-2xl"
+  style={{
+    color: "rgba(255,255,255,0.74)",
+    fontSize: "clamp(1rem, 1.8vw, 1.2rem)",
+  }}
+>
+  From live concerts and cultural festivals to nightlife experiences,
+  food gatherings, seasonal celebrations, and community events —
+  discover what’s happening in Fate every week.
+</p>
 
-          {/* Buttons */}
-          <div className="flex flex-wrap gap-4">
-
-            {/* Primary Button */}
-            <Link
-              href="/discover"
-              className="
-                inline-flex items-center justify-center gap-2
-                h-14 px-8
-                font-bold tracking-wide
-                transition-all duration-300
-                group
-                relative overflow-hidden
-              "
-              style={{
-                background:
-                  "linear-gradient(135deg,#20B2AA 0%, #1cc8be 100%)",
-                color: "white",
-                fontSize: "var(--sketch-sm)",
-                boxShadow: "0 12px 40px rgba(32,178,170,0.35)",
-              }}
-            >
-
-              {/* moving splash highlight */}
-              <span className="absolute inset-0 overflow-hidden">
-                <span className="absolute -left-10 top-0 h-full w-16 bg-white/20 blur-xl rotate-12 group-hover:left-[120%] transition-all duration-1000" />
-              </span>
-
-              <span className="relative z-10">
-                Explore Fate
-              </span>
-
-              <SketchArrow className="relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-
-            {/* Secondary Button */}
-            <Link
-              href="/events"
-              className="
-                inline-flex items-center justify-center gap-2
-                h-14 px-8
-                font-bold tracking-wide
-                backdrop-blur-md
-                transition-all duration-300
-                group
-                relative overflow-hidden
-              "
-              style={{
-                border: "1.5px solid rgba(255,255,255,0.2)",
-                background: "rgba(255,255,255,0.08)",
-                color: "rgba(255,255,255,0.92)",
-                fontSize: "var(--sketch-sm)",
-              }}
-            >
-
-              {/* glass splash */}
-              <span className="absolute inset-0 bg-gradient-to-r from-white/5 via-white/10 to-white/5 opacity-0 group-hover:opacity-100 transition duration-500" />
-
-              <span className="relative z-10">
-                View Events
-              </span>
-
-              <SketchArrow className="relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-
-          </div>
         </motion.div>
       </div>
 
-      {/* ───────────────── Bottom Stats Bar ───────────────── */}
-      <div
-        className="
-          absolute bottom-0 left-0 w-full
-          backdrop-blur-xl
-          border-t border-white/10
-          overflow-hidden
-        "
-        style={{
-          background:
-            "linear-gradient(to right, rgba(24,30,35,0.94), rgba(36,45,50,0.94))",
-        }}
-      >
-
-        {/* splash gradient */}
-        <div className="absolute inset-0">
-          <div className="absolute left-[10%] top-0 w-40 h-40 bg-[#20B2AA]/10 blur-3xl rounded-full" />
-          <div className="absolute right-[15%] bottom-0 w-40 h-40 bg-[#CC4125]/10 blur-3xl rounded-full" />
-        </div>
-
-        <div className="relative grid grid-cols-2 md:grid-cols-7 gap-0 px-6 md:px-16 py-8 items-center">
-          {stats.map((stat, i) => (
-            <>
-              <StatItem
-                key={stat.number}
-                number={stat.number}
-                label={stat.label}
-                delay={i * 0.1}
-              />
-
-              {i < stats.length - 1 && (
-                <SketchStatDivider key={`div-${i}`} />
-              )}
-            </>
-          ))}
-        </div>
-      </div>
+     
     </section>
   );
 }

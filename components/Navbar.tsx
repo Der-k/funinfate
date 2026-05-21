@@ -2,281 +2,213 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Menu, Search } from "lucide-react";
+import { Search, Menu } from "lucide-react";
+
+/* ── Brand palette ─────────────────────────────────────────────── */
+// #36454F  charcoal    — backdrop base
+// #20B2AA  teal        — accents, underlines, hover
+// #CC4125  red         — CTA button
+// #F5DEB3  wheat       — primary text, wordmark
+
+/* ── Swap this path for your own logo file ─────────────────────── */
+const LOGO_SRC = "/images/logo.png"; // e.g. .png, .svg, .webp
+
+/* ── Nav items ─────────────────────────────────────────────────── */
+const NAV_ITEMS = ["Explore?","Discover", "Eat & Drink", "Events", "Accomodation & Stay", "News"];
 
 export default function Navbar() {
   return (
     <motion.header
-      initial={{ y: -80, opacity: 0 }}
+      initial={{ y: -90, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.7 }}
-      className="
-        fixed
-        top-0
-        left-0
-        w-full
-        z-50
-      "
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className="fixed top-0 left-0 w-full z-50"
     >
-      {/* Backdrop */}
-      <div
-        className="
-          absolute
-          inset-0
-          bg-black/20
-          backdrop-blur-md
-          border-b
-          border-white/10
-        "
-      />
+      {/* ── Layered backdrop ───────────────────────────────────── */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* charcoal glass base */}
+        <div
+          className="absolute inset-0 backdrop-blur-xl"
+          style={{ background: "rgba(54,69,79,0.85)" }}
+        />
+        {/* top-edge teal shimmer */}
+        <div
+          className="absolute top-0 left-0 right-0 h-px"
+          style={{
+            background:
+              "linear-gradient(90deg, transparent 0%, rgba(32,178,170,0.45) 30%, rgba(32,178,170,0.7) 50%, rgba(32,178,170,0.45) 70%, transparent 100%)",
+          }}
+        />
+        {/* bottom border — wheat tint */}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-px"
+          style={{ background: "rgba(245,222,179,0.1)" }}
+        />
+      </div>
 
-      {/* Content */}
-      <nav
-        className="
-          relative
-          flex
-          items-center
-          justify-between
+      {/* ── Nav content ────────────────────────────────────────── */}
+      <nav className="relative flex items-center justify-between px-6 md:px-12 lg:px-16 h-[96px]">
 
-          px-6
-          md:px-12
-          lg:px-16
-
-          h-[84px]
-        "
-      >
-        {/* LEFT */}
-        <div className="flex items-center gap-14">
+        {/* LEFT ─ logo + nav links */}
+        <div className="flex items-center gap-12">
 
           {/* Logo */}
-          <Link
-            href="/"
-            className="
-              flex
-              items-center
-              gap-3
-              group
-            "
-          >
-            {/* Icon */}
-            <div
-              className="
-                relative
-                flex
-                items-center
-                justify-center
+          <Link href="/" className="group flex items-center gap-2.5 select-none">
+            {/* Logo image */}
+            <motion.div
+  whileHover={{ scale: 1.07 }}
+  transition={{ type: "spring", stiffness: 400, damping: 20 }}
+  className="
+    relative
+    flex
+    items-center
+    justify-center
 
-                w-11
-                h-11
+    rounded-[22px]
 
-                rounded-full
+    px-3
+    py-2
 
-                border
-                border-[#7FFFD4]/60
+    bg-white/[0.03]
+    backdrop-blur-md
 
-                bg-white/5
-                backdrop-blur-sm
+    border border-white/10
 
-                shadow-[0_0_30px_rgba(127,255,212,0.18)]
+    shadow-[0_8px_30px_rgba(0,0,0,0.18)]
 
-                transition-all
-                duration-300
+    transition-all
+    duration-500
 
-                group-hover:scale-105
-              "
-            >
-              <span
-                className="
-                  text-white
-                  text-lg
-                  font-black
-                  tracking-tight
-                "
-              >
-                F
-              </span>
-            </div>
+    group-hover:bg-white/[0.05]
+    group-hover:border-[#20B2AA]/30
+    group-hover:[filter:drop-shadow(0_0_12px_rgba(32,178,170,0.35))]
+  "
+>
+              <img
+  src={LOGO_SRC}
+  alt="Fate logo"
+  width={72}
+  height={72}
+  className="h-[72px] md:h-[86px] w-auto object-contain"
+/>
+            </motion.div>
 
-            {/* Text */}
+            {/* Wordmark */}
             <div className="leading-none">
               <p
-                className="
-                  text-white
-                  text-[11px]
-                  uppercase
-                  tracking-[0.35em]
-                  opacity-70
-                  mb-1
-                "
+                className="text-[9px] uppercase tracking-[0.42em] mb-1"
+                style={{ color: "rgba(32,178,170,0.8)" }}
               >
                 Visit
               </p>
-
               <h1
-                className="
-                  text-white
-                  text-2xl
-                  font-black
-                  tracking-tight
-                "
+                className="text-[22px] font-black tracking-[-0.02em] leading-none transition-colors duration-300"
+                style={{
+                  fontFamily: "'Georgia', serif",
+                  color: "#F5DEB3",
+                }}
               >
                 Fate
               </h1>
             </div>
           </Link>
 
-          {/* Navigation */}
-          <div
-            className="
-              hidden
-              lg:flex
-              items-center
-              gap-10
-            "
-          >
-            {[
-              "Discover",
-              "Eat & Drink",
-              "Events",
-              "Stay",
-              "Explore",
-            ].map((item) => (
-              <Link
+          {/* Desktop nav */}
+          <div className="hidden lg:flex items-center gap-8">
+            {NAV_ITEMS.map((item, i) => (
+              <motion.div
                 key={item}
-                href="/"
-                className="
-                  group
-                  relative
-
-                  text-white/75
-                  text-[13px]
-                  uppercase
-                  tracking-[0.18em]
-                  font-medium
-
-                  hover:text-white
-
-                  transition-colors
-                "
+                initial={{ opacity: 0, y: -6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.15 + i * 0.07, duration: 0.5 }}
               >
-                {item}
-
-                <span
-                  className="
-                    absolute
-                    left-0
-                    -bottom-2
-
-                    h-[2px]
-                    w-0
-
-                    bg-[#7FFFD4]
-
-                    transition-all
-                    duration-300
-
-                    group-hover:w-full
-                  "
-                />
-              </Link>
+                <Link
+                  href="/"
+                  className="group relative text-[11.5px] uppercase tracking-[0.2em] font-semibold transition-colors duration-200"
+                  style={{ color: "rgba(245,222,179,0.65)" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "#F5DEB3")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(245,222,179,0.65)")}
+                >
+                  {item}
+                  {/* teal animated underline */}
+                  <span
+                    className="absolute left-0 -bottom-1.5 h-px w-0 group-hover:w-full transition-all duration-300 ease-out"
+                    style={{ background: "#20B2AA" }}
+                  />
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>
 
-        {/* RIGHT */}
-        <div className="flex items-center gap-3">
+        {/* RIGHT ─ actions */}
+        <div className="flex items-center gap-2.5">
+
+          {/* Divider */}
+          <div
+            className="hidden md:block w-px h-5 mr-1"
+            style={{ background: "rgba(245,222,179,0.15)" }}
+          />
 
           {/* Search */}
           <button
-            className="
-              hidden
-              md:flex
-
-              items-center
-              justify-center
-
-              w-11
-              h-11
-
-              rounded-full
-
-              border
-              border-white/15
-
-              bg-white/5
-              backdrop-blur-sm
-
-              text-white/80
-
-              hover:bg-white/10
-              hover:text-white
-
-              transition-all
-            "
+            aria-label="Search"
+            className="hidden md:flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300"
+            style={{
+              border: "1px solid rgba(245,222,179,0.15)",
+              background: "rgba(245,222,179,0.04)",
+              color: "rgba(245,222,179,0.5)",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "rgba(32,178,170,0.12)";
+              e.currentTarget.style.color = "#20B2AA";
+              e.currentTarget.style.borderColor = "rgba(32,178,170,0.4)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "rgba(245,222,179,0.04)";
+              e.currentTarget.style.color = "rgba(245,222,179,0.5)";
+              e.currentTarget.style.borderColor = "rgba(245,222,179,0.15)";
+            }}
           >
-            <Search size={18} />
+            <Search size={16} strokeWidth={1.75} />
           </button>
 
-          {/* CTA */}
-          <button
-            className="
-              hidden
-              md:flex
-
-              items-center
-              justify-center
-
-              px-6
-              h-11
-
-              rounded-full
-
-              bg-[#20B2AA]
-              text-white
-
-              text-[12px]
-              font-bold
-              uppercase
-              tracking-[0.18em]
-
-              hover:bg-[#26c8bf]
-
-              shadow-[0_0_25px_rgba(32,178,170,0.35)]
-
-              transition-all
-              duration-300
-            "
+          {/* CTA — red */}
+          <motion.button
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="hidden md:flex items-center justify-center px-5 h-10 rounded-full text-[10.5px] font-bold uppercase tracking-[0.22em] transition-all duration-300"
+            style={{
+              background: "linear-gradient(135deg, #CC4125 0%, #a8331c 100%)",
+              color: "#F5DEB3",
+              boxShadow:
+                "0 0 0 1px rgba(204,65,37,0.5), 0 4px 24px rgba(204,65,37,0.3), inset 0 1px 0 rgba(245,222,179,0.15)",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.boxShadow =
+                "0 0 0 1px rgba(204,65,37,0.7), 0 6px 32px rgba(204,65,37,0.45), inset 0 1px 0 rgba(245,222,179,0.2)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.boxShadow =
+                "0 0 0 1px rgba(204,65,37,0.5), 0 4px 24px rgba(204,65,37,0.3), inset 0 1px 0 rgba(245,222,179,0.15)";
+            }}
           >
             Plan Your Visit
-          </button>
+          </motion.button>
 
-          {/* Mobile Menu */}
+          {/* Mobile menu */}
           <button
-            className="
-              flex
-              lg:hidden
-
-              items-center
-              justify-center
-
-              w-11
-              h-11
-
-              rounded-full
-
-              border
-              border-white/15
-
-              bg-white/5
-
-              text-white
-
-              hover:bg-white/10
-
-              transition-all
-            "
+            aria-label="Open menu"
+            className="flex lg:hidden items-center justify-center w-10 h-10 rounded-full transition-all duration-300"
+            style={{
+              border: "1px solid rgba(245,222,179,0.15)",
+              background: "rgba(245,222,179,0.04)",
+              color: "#F5DEB3",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(245,222,179,0.1)")}
+            onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(245,222,179,0.04)")}
           >
-            <Menu size={20} />
+            <Menu size={18} strokeWidth={1.75} />
           </button>
         </div>
       </nav>
